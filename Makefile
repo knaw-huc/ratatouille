@@ -1,6 +1,10 @@
 .PHONY: all
 all: help
 
+.PHONY: clean-dependencies
+clean-dependencies:
+	-rm -rf env
+
 install-dependencies:
 	@echo "--- Checking global prerequisites ---">&2
 	@command -v python3 || (echo "Missing dependency: python3" && false)
@@ -14,14 +18,14 @@ env: requirements.txt
 
 .PHONY: run
 run:
-	merge-indices
-
-.PHONY: install
-install:
-	pip install -e .
+	@echo "--- Merging indices ---">&2
+	. env/bin/activate && merge-indices
 
 help:
 	@echo "make tools for ratatouille"
 	@echo "Please use \`make <target>', where <target> is one of:"
-	@echo "  install        - to install this package locally in the currently selected virtual env"
-	@echo "  merge-indices  - to run the index merger"
+	@echo "  install-dependencies  - to install the necessary dependencies for ratatouiile"
+	@echo
+	@echo "  merge-indices         - to run the index merger"
+	@echo
+	@echo "  clean-dependencies    - clean local dependencies (python env)"
