@@ -1,3 +1,39 @@
+[project]
+name = "ratatouille"
+version = "0.1.0"
+description = "Consolidate indices from multiple corpora into a single unified index"
+authors = [
+    { name = "Hayco de Jong", email = "hayco.de.jong@di.huc.knaw.nl" },
+]
+readme = "README.md"
+license = "MIT"
+packages = [{ include = "ratatouille" }]
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "elasticsearch8",
+    "icecream>2.1.2",
+    "loguru>0.7.0",
+    "pytest",
+]
+
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.group.dev.dependencies]
+pytest = "^8.3.5"
+
+[project.scripts]
+version = "poetry_scripts:version"
+merge-indices = "ratatouille.cli.merge_indices:main"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/knaw-huc/ratatouille/issues"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    # note the use of single quote below to denote "raw" strings in TOML
+    "ignore:TestResult has no addDuration method",
+]
