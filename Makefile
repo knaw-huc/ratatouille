@@ -16,6 +16,11 @@ env: requirements.txt
 	python3 -m venv env && . env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt
 	touch $@
 
+.PHONY: install
+install:
+	@echo "--- Installing package locally in env">&2
+	. env/bin/activate && pip install -e .
+
 .PHONY: run
 run:
 	@echo "--- Merging indices ---">&2
