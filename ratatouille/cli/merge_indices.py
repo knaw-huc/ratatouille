@@ -16,6 +16,7 @@ logger.add(
     colorize=True
 )
 
+
 def get_index_mapping(hostname, port, index_name):
     """
     Fetches the mapping for a specific Elasticsearch index.
