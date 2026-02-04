@@ -17,6 +17,7 @@ _site/
 _temp/
 _themes/
 .tf/
+.idea/
 *.egg-info/
 build/
 dist
