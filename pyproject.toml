@@ -10,18 +10,16 @@ license = "MIT"
 packages = [{ include = "ratatouille" }]
 requires-python = ">=3.11,<4.0"
 dependencies = [
+    "dataclasses-json>=0.6.7",
     "elasticsearch8",
     "icecream>2.1.2",
     "loguru>0.7.0",
-    "pytest",
+    "pytest>=9.0.2",
 ]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[project.group.dev.dependencies]
-pytest = "^8.3.5"
 
 [project.scripts]
 version = "poetry_scripts:version"
