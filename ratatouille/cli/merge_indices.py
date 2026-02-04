@@ -1,11 +1,10 @@
 #! /usr/bin/env python3
 
 import argparse
-import elasticsearch
 import sys
 
-from elasticsearch import Elasticsearch
-from elasticsearch.exceptions import NotFoundError, ConnectionError
+from elasticsearch8 import Elasticsearch
+from elasticsearch8.exceptions import NotFoundError, ConnectionError
 from loguru import logger
 
 # 1. Setup Loguru Configuration
