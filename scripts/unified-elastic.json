@@ -1,0 +1,27 @@
+{
+  "properties": {
+    "corpus": {
+      "type": "keyword"
+    },
+    "location": {
+      "type": "keyword"
+    },
+    "recipient": {
+      "type": "keyword"
+    },
+    "sender": {
+      "type": "keyword"
+    },
+    "letterOriginalText": {
+      "type": "text",
+      "fields": {
+        "tokenCount": {
+          "type": "token_count",
+          "analyzer": "fulltext_analyzer"
+        }
+      },
+      "index_options": "offsets",
+      "analyzer": "fulltext_analyzer"
+    }
+  }
+}

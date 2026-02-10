@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "datePublished": {
+      "type": "date"
+    },
+    "fromLocation": {
+      "type": "keyword"
+    },
+    "letterText": {
+      "type": "text",
+      "fields": {
+        "tokenCount": {
+          "type": "token_count",
+          "analyzer": "fulltext_analyzer"
+        }
+      },
+      "index_options": "offsets",
+      "analyzer": "fulltext_analyzer"
+    },
+    "recipient": {
+      "type": "keyword"
+    },
+    "sender": {
+      "type": "keyword"
+    },
+    "title": {
+      "type": "keyword"
+    },
+    "toLocation": {
+      "type": "keyword"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+target:
+  name: unified
+  url: "localhost:9200"
+
+source:
+  - name: brederode
+    url: "localhost:9201"
+    fields:
+      - copy: fromLocation
+      - copy: toLocation
+      - copy: recipient
+      - copy: sender
+      - rename: letterText
+        to: letterOriginalText
+  - name: israels
+    url: "localhost:9202"
+    # location == fromLocation
