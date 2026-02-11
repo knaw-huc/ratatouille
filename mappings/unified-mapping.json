@@ -14,6 +14,7 @@
       "format": "yyyy-MM-dd|yyyy-MM|yyyy"
     },
     "dateSortable": {
+      "type": "date",
       "format": "yyyy-MM-dd|yyyy-MM|yyyy"
     },
     "persons": {
