@@ -6,7 +6,7 @@ sources:
   - url: "localhost:9201"
     index: brederode
     fields:
-      - lambda: "_: brederode"
+      - lambda: "_: 'brederode'"
         target: corpus
       - source: fromLocation
       - source: toLocation
@@ -26,7 +26,7 @@ sources:
   - url: "localhost:9202"
     index: israels
     fields:
-      - lambda: "_: israels"
+      - lambda: "_: 'israels'"
         target: corpus
       - source: sender
       - source: persons
