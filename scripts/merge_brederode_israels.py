@@ -9,7 +9,7 @@ def main():
             "http://localhost:9201/brederode",
             "http://localhost:9202/israels",
         ],
-        mapping_path="unified-elastic.json",
+        mapping_path="../mappings/unified-mapping.json",
         show_progress=True,
         # log_file_path="merge_log.txt",
     )
