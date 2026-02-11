@@ -3,13 +3,32 @@
     "corpus": {
       "type": "keyword"
     },
-    "location": {
+    "fromLocation": {
+      "type": "keyword"
+    },
+    "toLocation": {
+      "type": "keyword"
+    },
+    "date": {
+      "type": "date_range",
+      "format": "yyyy-MM-dd|yyyy-MM|yyyy"
+    },
+    "dateSortable": {
+      "format": "yyyy-MM-dd|yyyy-MM|yyyy"
+    },
+    "persons": {
       "type": "keyword"
     },
     "recipient": {
       "type": "keyword"
     },
     "sender": {
+      "type": "keyword"
+    },
+    "title": {
+      "type": "keyword"
+    },
+    "type": {
       "type": "keyword"
     },
     "letterOriginalText": {
