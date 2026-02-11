@@ -1,17 +1,37 @@
 target:
-  name: unified
   url: "localhost:9200"
+  index: unified
 
-source:
-  - name: brederode
-    url: "localhost:9201"
+sources:
+  - url: "localhost:9201"
+    index: brederode
     fields:
-      - copy: fromLocation
-      - copy: toLocation
-      - copy: recipient
-      - copy: sender
-      - rename: letterText
-        to: letterOriginalText
-  - name: israels
-    url: "localhost:9202"
-    # location == fromLocation
+      - source: fromLocation
+      - source: toLocation
+      - source: recipient
+      - source: sender
+      - source: title
+      - source: datePublished
+        lambda: "x: {'date': {'gte': x, 'lte': x}}"
+        target: date
+      - source: datePublished
+        target: dateSortable
+      - source: letterText
+        target: letterOriginalText
+      - lambda: "_: 'letter'"
+        target: type
+
+  - url: "localhost:9202"
+    index: israels
+    fields:
+      - source: sender
+      - source: persons
+      - source: type
+      - source: date
+      - source: dateSortable
+      - source: correspondent
+        target: recipient
+      - source: location
+        target: fromLocation
+      - source: titleNL
+        target: title
