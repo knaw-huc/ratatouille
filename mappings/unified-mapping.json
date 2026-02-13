@@ -1,47 +1,62 @@
 {
-  "properties": {
-    "corpus": {
-      "type": "keyword"
-    },
-    "fromLocation": {
-      "type": "keyword"
-    },
-    "toLocation": {
-      "type": "keyword"
-    },
-    "date": {
-      "type": "date_range",
-      "format": "yyyy-MM-dd|yyyy-MM|yyyy"
-    },
-    "dateSortable": {
-      "type": "date",
-      "format": "yyyy-MM-dd|yyyy-MM|yyyy"
-    },
-    "persons": {
-      "type": "keyword"
-    },
-    "recipient": {
-      "type": "keyword"
-    },
-    "sender": {
-      "type": "keyword"
-    },
-    "title": {
-      "type": "keyword"
-    },
-    "type": {
-      "type": "keyword"
-    },
-    "letterOriginalText": {
-      "type": "text",
-      "fields": {
-        "tokenCount": {
-          "type": "token_count",
-          "analyzer": "fulltext_analyzer"
-        }
+  "mappings": {
+    "properties": {
+      "corpus": {
+        "type": "keyword"
       },
-      "index_options": "offsets",
-      "analyzer": "fulltext_analyzer"
+      "fromLocation": {
+        "type": "keyword"
+      },
+      "toLocation": {
+        "type": "keyword"
+      },
+      "date": {
+        "type": "date_range",
+        "format": "yyyy-MM-dd|yyyy-MM|yyyy"
+      },
+      "dateSortable": {
+        "type": "date",
+        "format": "yyyy-MM-dd|yyyy-MM|yyyy"
+      },
+      "persons": {
+        "type": "keyword"
+      },
+      "recipient": {
+        "type": "keyword"
+      },
+      "sender": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "keyword"
+      },
+      "type": {
+        "type": "keyword"
+      },
+      "letterOriginalText": {
+        "type": "text",
+        "fields": {
+          "tokenCount": {
+            "type": "token_count",
+            "analyzer": "fulltext_analyzer"
+          }
+        },
+        "index_options": "offsets",
+        "analyzer": "fulltext_analyzer"
+      }
+    }
+  },
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "fulltext_analyzer": {
+          "filter": [
+            "lowercase"
+          ],
+          "type": "custom",
+          "tokenizer": "standard"
+        }
+      }
     }
   }
 }

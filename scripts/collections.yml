@@ -1,9 +1,10 @@
 target:
-  url: "localhost:9200"
+  url: "http://localhost:9200"
   index: unified
+  mapping: "../mappings/unified-mapping.json"
 
 sources:
-  - url: "localhost:9201"
+  - url: "http://localhost:9201"
     index: brederode
     fields:
       - lambda: "_: 'brederode'"
@@ -23,7 +24,7 @@ sources:
       - lambda: "_: 'letter'"
         target: type
 
-  - url: "localhost:9202"
+  - url: "http://localhost:9202"
     index: israels
     fields:
       - lambda: "_: 'israels'"
