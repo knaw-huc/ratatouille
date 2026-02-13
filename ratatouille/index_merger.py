@@ -76,7 +76,7 @@ class IndexMerger:
             query={"query": {"match_all": {}}},
             scroll="5m",  # Keep the search context alive for 5 minutes
         )
-        count = 0
+
         for src_doc in doc_generator:
             # Each 'src_doc' is a dictionary containing metadata and the source
             src_doc_id = src_doc["_id"]
