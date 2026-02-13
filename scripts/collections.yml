@@ -7,7 +7,7 @@ sources:
   - url: "http://localhost:9201"
     index: brederode
     fields:
-      - lambda: "_: 'brederode'"
+      - lambda: "_: index"
         target: corpus
       - source: fromLocation
       - source: toLocation
@@ -15,7 +15,7 @@ sources:
       - source: sender
       - source: title
       - source: datePublished
-        lambda: "x: {'date': {'gte': x, 'lte': x}}"
+        lambda: "x: {'gte': x, 'lte': x}"
         target: date
       - source: datePublished
         target: dateSortable
@@ -27,7 +27,7 @@ sources:
   - url: "http://localhost:9202"
     index: israels
     fields:
-      - lambda: "_: 'israels'"
+      - lambda: "_: index"
         target: corpus
       - source: sender
       - source: persons
@@ -40,3 +40,4 @@ sources:
         target: fromLocation
       - source: titleNL
         target: title
+      - source: letterOriginalText
