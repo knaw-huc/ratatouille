@@ -26,8 +26,6 @@ class IndexMerger:
     def __init__(self, config: IndexMergerConfig):
         init_logger(config.show_progress, config.log_file_path)
 
-        self.errors = []
-
         if not os.path.exists(config.collections_path):
             logger.critical(f"Missing file at: {config.collections_path}")
             sys.exit(1)
@@ -56,19 +54,21 @@ class IndexMerger:
         logger.info(f"Setting up Elasticsearch index on {self.target_url}")
         es = self.target_es
         if es.indices.exists(index=self.target_index):
-            logger.warning(f"Deleting existing index: {self.target_index}")
+            logger.info(f"Deleting existing index: {self.target_index}")
             es.indices.delete(index=self.target_index)
         logger.info(f"Creating index: {self.target_index}")
         es.indices.create(index=self.target_index, body=self.target_mapping)
 
-    def merge(self):
+    def merge(self) -> list[str]:
         source_names = [s["index"] for s in self.sources]
         logger.info(f"Merging {source_names} into '{self.target_index}'")
+        warnings = []
         for s in self.sources:
-            self.merge_source(s)
-        return ["example error"]
+            warnings.extend(self.merge_source(s))
+        return warnings
 
-    def merge_source(self, src_conf):
+    def merge_source(self, src_conf: dict[str, any]) -> list[str]:
+        warnings = []
         source_es = Elasticsearch(src_conf["url"])
         doc_generator = scan(
             source_es,
@@ -96,7 +96,7 @@ class IndexMerger:
                 if source_field_name:
                     value = src_data.get(source_field_name)
                     if not value:
-                        logger.warning(f"No {source_field_name} in {src_doc_id}")
+                        warnings.append(f"No {source_field_name} in {src_doc_id}")
                         continue
                 else:
                     value = None
@@ -108,7 +108,9 @@ class IndexMerger:
                 if target_field_name:
                     doc[target_field_name] = value
                 else:
-                    logger.error(f"No target for {field} in: {src_doc_id}")
+                    warnings.append(f"No target for {field} in: {src_doc_id}")
                     continue
 
             self.target_es.index(index=self.target_index, id=src_doc_id, document=doc)
+
+        return warnings

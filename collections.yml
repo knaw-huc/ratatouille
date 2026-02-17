@@ -1,7 +1,7 @@
 target:
   url: "http://localhost:9200"
   index: unified
-  mapping: "../mappings/unified-mapping.json"
+  mapping: "./mappings/unified-mapping.json"
 
 sources:
   - url: "http://localhost:9201"

@@ -17,7 +17,7 @@ test:
 .PHONY: run
 run:
 	@echo "--- Running index merger ---">&2
-	poetry run merge-indices
+	poetry run merge-indices --config collections.yml --progress
 
 .PHONY: help
 help:
